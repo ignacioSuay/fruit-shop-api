@@ -45,6 +45,21 @@ public class FruitShopControllerTest {
     }
 
     @Test
+    public void shouldGet200AndDiscountedResult() throws Exception {
+
+        //Given
+        List<String> fruits = asList("apple", "apple", "orange", "orange", "orange");
+        String url = String.format("http://localhost:%s/fruits/checkout", randomServerPort);
+
+        //When
+        ResponseEntity<BigDecimal> checkoutAmount = testRestTemplate.postForEntity(url, fruits, BigDecimal.class);
+
+        //Then
+        assertThat(checkoutAmount.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(checkoutAmount.getBody().floatValue()).isEqualTo(1.10f);
+    }
+
+    @Test
     public void shouldGet400WithWrongInputFruits() throws Exception {
 
         //Given

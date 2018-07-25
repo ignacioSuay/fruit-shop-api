@@ -50,4 +50,43 @@ public class CheckoutServiceTest {
         assertThat(result.floatValue()).isEqualTo(1.10f);
     }
 
+    @Test
+    public void shouldCalculateSumOfFruitsAndApplyAppleDiscount() throws Exception {
+
+        //Given
+        List<String> fruits = asList("apple", "apple", "orange", "orange");
+
+        //When
+        BigDecimal result = checkoutService.checkout(fruits);
+
+        //Then
+        assertThat(result.floatValue()).isEqualTo(1.10f);
+    }
+
+    @Test
+    public void shouldCalculateSumOfFruitsAndApplyOrangeDiscount() throws Exception {
+
+        //Given
+        List<String> fruits = asList("orange", "orange", "orange");
+
+        //When
+        BigDecimal result = checkoutService.checkout(fruits);
+
+        //Then
+        assertThat(result.floatValue()).isEqualTo(0.50f);
+    }
+
+    @Test
+    public void shouldCalculateSumOfFruitsAndApplyApplesAndOrangesDiscount() throws Exception {
+
+        //Given
+        List<String> fruits = asList("apple", "apple", "orange", "orange", "orange");
+
+        //When
+        BigDecimal result = checkoutService.checkout(fruits);
+
+        //Then
+        assertThat(result.floatValue()).isEqualTo(1.10f);
+    }
+
 }
