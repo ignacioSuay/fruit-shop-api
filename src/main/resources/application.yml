@@ -1,3 +1,10 @@
 logging:
   level:
     com.ignaciosuay: DEBUG
+
+application.data.config:
+  items:
+    - name: apple
+      price: 60
+    - name: orange
+      price: 25
